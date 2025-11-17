@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     {
       sentences: [
         { text: ["P’ISAQA WICHHU K´UCHUPI THAPANTA", "_", "RUNTUTA", "_","."], targets: ["RUWAN", "CHURANAMPAQ"] },
-        { text: ["MAMA PILI WAWANTA", "_", "MANA ATIQTIN", "_","."], targets: ["TUYTUYTA", "K’AMIN"] }
+        { text: ["MAMA PILI WAWANTA", "_", "MANA ATIQTIN", "_","."], targets: ["K’AMIN", "TUYTUYTA"] }
       ]
     }
   ];
