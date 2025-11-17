@@ -1,0 +1,84 @@
+:root{
+  --bg1:#f6e9e9; --frame:#c84b4b; --card:#f7efe9; --muted:#6b6b6b;
+  --stone:#e6e3dc; --accent:#6b2f2f; --accent-2:#8b4b4b;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:#222}
+.page-bg{
+  background: linear-gradient(180deg,#f1f3f7 0%, #efe6e8 35%, #efe1dc 100%);
+  min-height:100vh; padding:28px 12px;
+  display:flex;align-items:flex-start;justify-content:center;
+}
+
+/* Container y cabecera */
+.container{width:100%;max-width:980px}
+.topbar{display:flex;flex-direction:column;align-items:center;gap:6px;margin-bottom:14px}
+.breadcrumb{font-size:.85rem;color:var(--muted)}
+.title{margin:0;padding:12px 18px;border-radius:20px;background:linear-gradient(#f8eaea,#fff);color:var(--accent-2);font-weight:600;letter-spacing:.3px;font-size:1.3rem;text-align:center;box-shadow:0 2px 0 rgba(0,0,0,.04)}
+
+.frame{
+  background: linear-gradient(180deg,#ffd6d6,#f5caca 55%, #f3bfbf 100%);
+  border-radius:22px;padding:14px;border:6px solid var(--frame);
+  box-shadow: 0 8px 30px rgba(0,0,0,.12);
+}
+.frame-inner{background:var(--card);border-radius:12px;padding:12px;position:relative;overflow:hidden}
+
+/* Tirilla de palabras */
+.word-strip{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;padding:14px 8px;background:#efe7df;border-radius:10px;border:4px solid #e6d8cf;margin-bottom:12px}
+.word-pill{
+  padding:10px 14px;border-radius:8px;background:white;border:2px solid #efe0d9;font-weight:700;cursor:grab;
+  font-size:1.05rem;user-select:none;box-shadow:0 4px 0 rgba(0,0,0,.03), inset 0 -6px 10px rgba(0,0,0,.02)
+}
+
+.scene {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 18px 6px 8px;
+
+  aspect-ratio: 16 / 9; /* ancho : alto */
+  width: 100%; /* ocupar todo el ancho disponible */
+
+  background-image: url('museo.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 12px;
+}
+
+
+
+/* Contenedores tipo piedra */
+.targets-row{display:flex;gap:20px;justify-content:space-between;margin-top:14px}
+.target{flex:1;min-height:120px;background:linear-gradient(#f4f3ef,#e8e5dd);border-radius:14px;padding:12px;border:4px solid #d7cec5;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;position:relative}
+.target-label{font-size:1.2rem;font-weight:800;color:var(--accent-2);letter-spacing:2px;margin-bottom:8px;text-shadow:0 1px 0 #fff}
+.target-drop{flex:1;width:100%;display:flex;flex-wrap:wrap;gap:10px;align-items:flex-start;justify-content:center;padding:8px;border-radius:8px}
+
+/* Controls y botones */
+.controls{display:flex;justify-content:space-between;align-items:center;margin-top:12px;gap:10px}
+.control-btn{background:#fff;border:2px solid #f0e6e6;padding:8px 10px;border-radius:8px;cursor:pointer;font-weight:700}
+.action-btn{background:var(--accent);color:#fff;border:0;padding:8px 12px;border-radius:10px;cursor:pointer;font-weight:700}
+.action-btn.alt{background:#fff;color:var(--accent);border:2px solid #f0e6e6}
+.sound-btn{background:#fff;border:1px solid #e9e0df;padding:8px 10px;border-radius:10px;cursor:pointer}
+
+/* Feedback */
+.feedback{margin-top:10px;text-align:center;font-weight:700;color:var(--muted)}
+
+/* Footer */
+.credits{text-align:center;margin-top:12px;color:var(--muted);font-size:.9rem}
+
+/* Estilos de arrastrables cuando están contenidos */
+.word-pill[draggable="true"]{touch-action:none}
+.word-pill.dragging{opacity:.6;transform:scale(.98)}
+
+/* Responsivo */
+@media (max-width:900px){
+  .scene-center{width:320px;height:120px}
+  .targets-row{flex-direction:column}
+  .target{min-height:100px}
+}
+@media (max-width:480px){
+  .title{font-size:1.05rem;padding:10px}
+  .word-pill{font-size:.95rem;padding:8px 10px}
+}

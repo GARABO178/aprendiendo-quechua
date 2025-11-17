@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Juego — Singular / Plural (Museo)</title>
+  <link rel="stylesheet" href="estilo1.css">
+</head>
+<body>
+  <div class="page-bg">
+    <main class="container">
+      <header class="topbar">
+        
+        <h1 class="title">KAMACHIY: KAY RIMAYKUNATA JAP’IYNINMANJINA APAY.</h1>
+      </header>
+
+      <section class="frame">
+        <div class="frame-inner">
+          <!-- Zona superior de palabras -->
+          <div class="word-strip" id="word-strip" aria-live="polite"></div>
+
+          <!-- Escena central (decoración tipo museo) -->
+          <div class="scene">
+            <div class="scene-left"></div>
+            <div class="scene-center">
+              <div class="statue"></div>
+            </div>
+            <div class="scene-right"></div>
+          </div>
+
+          <!-- Contenedores destino -->
+          <div class="targets-row">
+            <div class="target" id="singular-target">
+              <div class="target-label">SUTIKUNAP RANTIN</div>
+              <div class="target-drop" data-box="singular"></div>
+            </div>
+
+            <div class="target" id="plural-target">
+              <div class="target-label">RIMACHIQ</div>
+              <div class="target-drop" data-box="plural"></div>
+            </div>
+          </div>
+
+          <!-- Controles -->
+          <div class="controls">
+            <div class="left-controls">
+              
+              <div class="page-indicator" id="page-indicator">1 / 2</div>
+            </div>
+
+            
+          </div>
+
+          <div class="feedback" id="feedback" aria-live="polite"></div>
+        </div>
+      </section>
+
+      
+    </main>
+  </div>
+
+  <script src="java.js"></script>
+</body>
+</html>

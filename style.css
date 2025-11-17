@@ -1,0 +1,128 @@
+body{
+  font-family: Arial, sans-serif;
+  margin:0;
+  background:#f2f6ff;
+}
+
+.container{
+  max-width:1000px;
+  margin:auto;
+  padding:20px;
+}
+
+header{
+  text-align:center;
+  margin-bottom:20px;
+}
+
+nav{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  margin-bottom:20px;
+}
+
+.tab{
+  padding:10px 15px;
+  border:none;
+  background:#dde3ff;
+  cursor:pointer;
+  border-radius:8px;
+  font-size:16px;
+}
+
+.tab.active{
+  background:#4f46e5;
+  color:white;
+}
+
+.section{
+  display:none;
+}
+
+.section.active{
+  display:block;
+}
+
+/* Cuentos */
+.stories{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:15px;
+}
+
+.story{
+  background:white;
+  padding:15px;
+  border-radius:10px;
+  box-shadow:0 2px 6px #0001;
+}
+/* Asegurar que todo el div sea clicable */
+.story a {
+  text-decoration: none; /* quitar subrayado */
+  color: inherit;        /* hereda el color del texto */
+  display: block;
+  border-radius: 10px;
+  overflow: hidden;      /* para que los bordes redondeados funcionen */
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* Efecto hover */
+.story a:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* Imagen dentro del enlace */
+.story img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px 10px 0 0;
+  box-shadow: none;
+}
+
+/* Texto debajo de la imagen dentro del enlace */
+.story-text {
+  background: rgba(79, 70, 229, 0.1);
+  text-align: center;
+  padding: 10px 5px;
+  font-family: 'Cursive', sans-serif;
+  font-size: 1.1rem;
+  color: #00000054;
+  border-radius: 0 0 10px 10px;
+}
+/* Botón de volver */
+.back-btn-container {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.back-btn {
+  display: inline-block;
+  padding: 12px 25px;
+  background: linear-gradient(45deg, #ff7f50, #ff6347);
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* Responsivo */
+@media(max-width:700px){
+  .stories{
+    grid-template-columns:1fr;
+  }
+
+  .target{
+    min-width:100%;
+  }
+}

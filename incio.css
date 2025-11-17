@@ -1,0 +1,80 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.inicio-bg {
+  width: 100%;
+  height: 100vh;
+  background-image: url('fondo1.jpg'); /* reemplaza con tu imagen */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+}
+
+.inicio-header {
+  padding: 20px 30px;
+}
+
+.site-title {
+  font-family: 'Cursive', sans-serif; /* letra bonita y llamativa */
+  font-size: 3vw; /* tamaño adaptable */
+  color: #fff;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+}
+
+.inicio-main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.start-btn {
+  padding: 1.5em 3em;
+  background: linear-gradient(rgb(223, 205, 128));
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.8rem;
+  font-weight: 700;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+}
+
+.start-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.4);
+}
+
+/* Responsivo */
+@media (max-width: 900px) {
+  .site-title {
+    font-size: 5vw;
+  }
+
+  .start-btn {
+    font-size: 1.5rem;
+    padding: 1.2em 2.5em;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-title {
+    font-size: 6vw;
+  }
+
+  .start-btn {
+    font-size: 1.2rem;
+    padding: 1em 2em;
+  }
+}
