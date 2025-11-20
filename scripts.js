@@ -14,31 +14,88 @@ tabs.forEach(tab => {
 
 // Juego 1: Drag & Drop
 const items = [
-  {text:'maestro', target:'personas'},
-  {text:'niña', target:'personas'},
-  {text:'escuela', target:'lugares'},
-  {text:'parque', target:'lugares'},
-  {text:'libro', target:'cosas'},
-  {text:'pelota', target:'cosas'}
+  { text: 'maestro', target: 'personas' },
+  { text: 'niña', target: 'personas' },
+  { text: 'escuela', target: 'lugares' },
+  { text: 'parque', target: 'lugares' },
+  { text: 'libro', target: 'cosas' },
+  { text: 'pelota', target: 'cosas' }
 ];
 
-const targets = ['personas','lugares','cosas'];
+const targets = ['personas', 'lugares', 'cosas'];
 
-function initDrag(){
+function initDrag() {
   const words = document.getElementById('words');
   const t = document.getElementById('targets');
   words.innerHTML = '';
   t.innerHTML = '';
 
-  items.sort(()=>Math.random()-0.5).forEach(obj => {
+  items.sort(() => Math.random() - 0.5).forEach(obj => {
     const w = document.createElement('div');
     w.className = 'word';
     w.textContent = obj.text;
     w.draggable = true;
     w.dataset.target = obj.target;
 
+    // Eventos Mouse
     w.addEventListener('dragstart', e => {
       e.dataTransfer.setData('text', obj.text);
+    });
+
+    // Eventos Touch
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let initialLeft = 0;
+    let initialTop = 0;
+
+    w.addEventListener('touchstart', e => {
+      e.preventDefault();
+      const touch = e.touches[0];
+      touchStartX = touch.clientX;
+      touchStartY = touch.clientY;
+
+      w.classList.add('dragging'); // Asegúrate de tener estilos para esto si es necesario
+      w.style.position = 'fixed';
+      w.style.zIndex = '1000';
+      w.style.width = w.offsetWidth + 'px';
+
+      const rect = w.getBoundingClientRect();
+      initialLeft = rect.left;
+      initialTop = rect.top;
+
+      w.style.left = initialLeft + 'px';
+      w.style.top = initialTop + 'px';
+    }, { passive: false });
+
+    w.addEventListener('touchmove', e => {
+      e.preventDefault();
+      const touch = e.touches[0];
+      const deltaX = touch.clientX - touchStartX;
+      const deltaY = touch.clientY - touchStartY;
+
+      w.style.left = (initialLeft + deltaX) + 'px';
+      w.style.top = (initialTop + deltaY) + 'px';
+    }, { passive: false });
+
+    w.addEventListener('touchend', e => {
+      w.classList.remove('dragging');
+      w.style.position = '';
+      w.style.zIndex = '';
+      w.style.left = '';
+      w.style.top = '';
+      w.style.width = '';
+
+      const touch = e.changedTouches[0];
+      const elementBelow = document.elementFromPoint(touch.clientX, touch.clientY);
+
+      if (!elementBelow) return;
+
+      const dropZone = elementBelow.closest('.target');
+
+      if (dropZone) {
+        // Lógica de drop manual
+        dropZone.appendChild(w);
+      }
     });
 
     words.appendChild(w);
@@ -67,7 +124,7 @@ document.getElementById('check-drag').onclick = () => {
   let good = 0;
   document.querySelectorAll('.word').forEach(w => {
     const parent = w.parentElement.dataset.box;
-    if(parent === w.dataset.target) good++;
+    if (parent === w.dataset.target) good++;
   });
   const fb = document.getElementById('drag-feedback');
   fb.textContent = `Acertaste ${good} de ${items.length}`;
@@ -78,12 +135,12 @@ document.getElementById('reset-drag').onclick = initDrag;
 
 // Juego 2: BR o BL
 const data = [
-  {rest:'isa', correct:'BR', base:'La ___isa del mar me calma.'},
-  {rest:'anco', correct:'BL', base:'El color ___anco es bonito.'},
-  {rest:'illo', correct:'BR', base:'El sol produce un ___illo.'}
+  { rest: 'isa', correct: 'BR', base: 'La ___isa del mar me calma.' },
+  { rest: 'anco', correct: 'BL', base: 'El color ___anco es bonito.' },
+  { rest: 'illo', correct: 'BR', base: 'El sol produce un ___illo.' }
 ];
 
-function buildBRBL(){
+function buildBRBL() {
   const container = document.getElementById('brbl-game');
   container.innerHTML = '';
 
@@ -93,7 +150,7 @@ function buildBRBL(){
     sentence.innerHTML = item.base.replace('___', `<span id="blank${i}">___</span>`);
 
     const choices = document.createElement('div');
-    ['BR','BL'].forEach(op => {
+    ['BR', 'BL'].forEach(op => {
       const c = document.createElement('span');
       c.className = 'choice';
       c.textContent = op;
@@ -118,9 +175,9 @@ buildBRBL();
 
 document.getElementById('check-brbl').onclick = () => {
   let good = 0;
-  data.forEach((d,i) => {
-    const chosen = document.querySelector(`#brbl-game p:nth-child(${i+1})`).dataset.choice;
-    if(chosen === d.correct) good++;
+  data.forEach((d, i) => {
+    const chosen = document.querySelector(`#brbl-game p:nth-child(${i + 1})`).dataset.choice;
+    if (chosen === d.correct) good++;
   });
   const fb = document.getElementById('brbl-feedback');
   fb.textContent = `Correctos: ${good} de ${data.length}`;
